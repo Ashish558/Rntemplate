@@ -45,6 +45,6 @@ interface ExtendedTheme extends Theme {
   rounded: BorderRadii;
 }
 
-declare module '@react-navigation/native' {
-  export function useTheme(): ExtendedTheme;
-}
+// declare module '@react-navigation/native' {
+//   export function useTheme(): ExtendedTheme;
+// }

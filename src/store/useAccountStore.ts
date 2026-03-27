@@ -13,7 +13,9 @@ export interface User {
 
 export interface AuthState {
   accessToken: string | null;
+  loggedIn: boolean;
   user: User;
+  loginUser: () => void;
   setUser: (data: Partial<User>) => void;
   setAccessToken: (token: string | null) => void;
   logoutUser: () => void;
@@ -34,6 +36,7 @@ const initialUser: User = {
 // Zustand store
 export const useUserStore = create<AuthState>((set, get) => ({
   accessToken: null,
+  loggedIn: false,
   user: { ...initialUser },
 
   setUser: data =>
@@ -50,6 +53,11 @@ export const useUserStore = create<AuthState>((set, get) => ({
     set(() => ({
       accessToken: null,
       user: { ...initialUser },
+    })),
+
+  loginUser: () =>
+    set(() => ({
+      loggedIn: true,
     })),
 
   updateUserLoading: value =>
