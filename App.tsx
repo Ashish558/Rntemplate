@@ -11,14 +11,28 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
+import {
+  asyncStoragePersistor,
+  queryClient,
+} from './src/services/query/queryClient';
 
+const persistOptions = {
+  persister: asyncStoragePersistor,
+  maxAge: 24 * 60 * 60 * 1000,
+};
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
     <SafeAreaProvider>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <PersistQueryClientProvider
+        client={queryClient}
+        persistOptions={persistOptions}
+      >
+        <AppContent />
+      </PersistQueryClientProvider>
     </SafeAreaProvider>
   );
 }

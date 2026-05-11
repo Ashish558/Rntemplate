@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useUserStore } from '../../store/useAccountStore';
 import { AuthStackParamList } from '../../types/navigation';
 import LoginScreen from '../../features/Auth/screens/LoginScreen';
 

@@ -92,8 +92,3 @@
 
     3 . Auth-related screens → AuthStack
 
-9.  TypeScript Integration
-    Centralized navigation types defined in /types/navigation.ts
-    Each navigator is typed using its corresponding param list
-    Screens use NativeStackScreenProps for type-safe params
-    Nested navigation handled using NavigatorScreenParams

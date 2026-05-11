@@ -2,13 +2,10 @@ import { create } from 'zustand';
 
 // Define types for user and store
 export interface User {
-  id?: string;
+  id: string;
   name: string;
   email: string;
-  phone: string;
-  accountIs: 'guest' | 'user' | 'admin';
-  loading: boolean;
-  selectedRoadmaps: string[];
+  loading?: boolean;
 }
 
 export interface AuthState {
@@ -25,12 +22,9 @@ export interface AuthState {
 
 // Initial user state
 const initialUser: User = {
-  name: 'guest',
+  id: '',
   email: '',
-  phone: '',
-  accountIs: 'guest',
-  loading: false,
-  selectedRoadmaps: [],
+  name: ''
 };
 
 // Zustand store
