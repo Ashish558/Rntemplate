@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { useUserStore } from '../../Auth/store/useAuthStore';
+import { useAuthStore } from '../../Auth/store/useAuthStore';
 import { queryKeys } from '../../../services/query/queryKeys';
 import { userApi } from '../api/userApi';
 
 
 export const useGetUserProfile = ( options = {}) => {
-  const accessToken = useUserStore(state => state.accessToken);
+  const accessToken = useAuthStore(state => state.accessToken);
 
   return useQuery({
     queryKey: queryKeys.users.profile(),

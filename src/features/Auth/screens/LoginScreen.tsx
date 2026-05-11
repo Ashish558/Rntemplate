@@ -5,7 +5,7 @@ const LoginScreen = () => {
   const loginMutation = useLogin();
 
   const handleLogin = async () => {
-    const response = await loginMutation.mutateAsync({
+    await loginMutation.mutateAsync({
       email: '',
       password: '',
     });

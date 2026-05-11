@@ -5,17 +5,19 @@ import {
 } from '@tanstack/react-query';
 import { ApiError } from '../../../types/entities';
 import { queryKeys } from '../../../services/query/queryKeys';
+import { userApi } from '../../User/api/userApi';
 import { authApi } from '../api/authApi';
-import { useUserStore } from '../store/useAuthStore';
 import { LoginPayload, LoginResponse } from '../types/auth.types';
+import { useAuthStore } from '../store/useAuthStore';
+import { useUserStore } from '../../User/store/useUserStore';
 
 type UseLoginOptions = UseMutationOptions<LoginResponse, ApiError, LoginPayload>;
 
 export const useLogin = (options?: UseLoginOptions) => {
   const queryClient = useQueryClient();
-  const setAccessToken = useUserStore(state => state.setAccessToken);
+  const setAccessToken = useAuthStore(state => state.setAccessToken);
   const setUser = useUserStore(state => state.setUser);
-  const loginUser = useUserStore(state => state.loginUser);
+  const loginUser = useAuthStore(state => state.loginUser);
 
   return useMutation<LoginResponse, ApiError, LoginPayload>({
     mutationFn: authApi.login,
@@ -27,9 +29,12 @@ export const useLogin = (options?: UseLoginOptions) => {
         setUser(data.user);
         queryClient.setQueryData(queryKeys.users.profile(), data.user);
       } else {
-        await queryClient.invalidateQueries({
+        const userProfile = await queryClient.fetchQuery({
           queryKey: queryKeys.users.profile(),
+          queryFn: userApi.getUserProfile,
         });
+
+        setUser(userProfile);
       }
 
       loginUser();
