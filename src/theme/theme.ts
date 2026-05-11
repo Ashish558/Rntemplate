@@ -1,8 +1,57 @@
 
+import { Theme } from '@react-navigation/native';
 import fonts from './fonts';
+import { FontStyles } from './fonts';
+
+export interface Spacing {
+  xs: number;
+  sm: number;
+  md: number;
+  lg: number;
+  xl: number;
+  xxl: number;
+}
+
+export interface FontSize {
+  text: number;
+  small: number;
+  h1: number;
+  medium: number;
+  large: number;
+}
+
+export interface BorderRadii {
+  sm: number;
+  md: number;
+  lg: number;
+  card: number;
+}
+
+export interface ExtendedTheme extends Theme {
+  colors: Theme['colors'] & {
+    dark: string;
+    accent: string;
+    secondary: string;
+    error: string;
+    transparent: string;
+    lightBackground: string;
+    white: string;
+    darkShade: string;
+    inputBackground: string;
+    lightInputBackground: string;
+    lightText: string;
+    darkText: string;
+    textLabel: string;
+    grayBackground: string;
+  };
+  spacing: Spacing;
+  appFonts: FontStyles;
+  fontSize: FontSize;
+  rounded: BorderRadii;
+}
 
 const AppTheme: ExtendedTheme = {
-  // dark: true,
+  dark: false,
   colors: {
     background: '#F6F6F6',
     dark: '#131313',
@@ -33,7 +82,25 @@ const AppTheme: ExtendedTheme = {
     xl: 32,
     xxl: 40,
   },
-  fonts,
+  fonts: {
+    regular: {
+      fontFamily: fonts.regular.fontFamily,
+      fontWeight: '400',
+    },
+    medium: {
+      fontFamily: fonts.medium.fontFamily,
+      fontWeight: '500',
+    },
+    bold: {
+      fontFamily: fonts.bold.fontFamily,
+      fontWeight: '700',
+    },
+    heavy: {
+      fontFamily: fonts.bold.fontFamily,
+      fontWeight: '700',
+    },
+  },
+  appFonts: fonts,
   fontSize: {
     text: 16,
     small: 14,

@@ -5,6 +5,7 @@ import { RootStackParamList } from '../types/navigation';
 import { useAuthStore } from '../features/Auth/store/useAuthStore';
 import AppDrawer from './AppDrawer';
 import AuthStack from './stacks/AuthStack';
+import AppTheme from '../theme/theme';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -12,10 +13,10 @@ const RootNavigator = () => {
   const isLoggedIn = useAuthStore(state => state.loggedIn);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={AppTheme}>
       {isLoggedIn ? <AppDrawer /> : <AuthStack />}
     </NavigationContainer>
   );
 };
 
-export default RootNavigator
+export default RootNavigator;

@@ -1,11 +1,13 @@
-import type { TextStyle } from 'react-native';
-
 // add more font-family if needed
+export interface AppFontStyle {
+  fontFamily: string;
+}
+
 export interface FontStyles {
-  regular: TextStyle;
-  medium: TextStyle;
-  semibold: TextStyle;
-  bold: TextStyle;
+  regular: AppFontStyle;
+  medium: AppFontStyle;
+  semibold: AppFontStyle;
+  bold: AppFontStyle;
 }
 
 const fonts: FontStyles = {

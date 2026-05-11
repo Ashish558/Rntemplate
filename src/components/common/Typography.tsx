@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, TextProps, TextStyle } from 'react-native';
-import { useTheme } from '@react-navigation/native';
 import { moderateScale } from 'react-native-size-matters';
 import fonts, { FontStyles } from '../../theme/fonts';
+import { ExtendedTheme } from '../../theme/theme';
+import { useAppTheme } from '../../theme/useAppTheme';
 
 type Child = string | number | React.ReactElement | null | undefined;
 
@@ -33,7 +34,7 @@ const Typography: React.FC<TypographyProps> = ({
   mr,
   ...props
 }) => {
-  const theme = useTheme();
+  const theme = useAppTheme();
   const styles = React.useMemo(() => createStyles(theme), [theme]);
 
   return (
@@ -48,10 +49,10 @@ const Typography: React.FC<TypographyProps> = ({
         },
         fonts[fontStyle],
         align && { textAlign: align },
-        mb && { marginBottom: mb },
-        mt && { marginTop: mt },
-        ml && { marginLeft: ml },
-        mr && { marginRight: mr },
+        mb !== undefined && { marginBottom: mb },
+        mt !== undefined && { marginTop: mt },
+        ml !== undefined && { marginLeft: ml },
+        mr !== undefined && { marginRight: mr },
         style,
       ]}
     >
@@ -66,6 +67,6 @@ const createStyles = (theme: ExtendedTheme) =>
   StyleSheet.create({
     text: {
       color: theme.colors.text,
-      ...theme.fonts.regular,
+      ...theme.appFonts.regular,
     },
   });
