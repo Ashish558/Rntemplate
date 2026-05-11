@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { BASE_URL } from '../../config/config';
-import { useUserStore } from '../../store/useAccountStore';
 import { ApiError } from '../../types/entities';
+import { useUserStore } from '../../features/Auth/store/useAuthStore';
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,

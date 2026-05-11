@@ -46,6 +46,7 @@ export const useUserStore = create<AuthState>((set, get) => ({
   logoutUser: () =>
     set(() => ({
       accessToken: null,
+      loggedIn: false,
       user: { ...initialUser },
     })),
 
